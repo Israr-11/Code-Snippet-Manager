@@ -1,3 +1,5 @@
+## Purpose
+
 This website addresses software engineers' common issue: managing and accessing frequently used code snippets. Engineers often find themselves reusing the same pieces of code when working on various projects. 
 However, manually locating and copying these snippets can be time-consuming and inefficient. This website provides a solution by offering a centralized platform for storing and organizing code snippets. 
 Engineers can easily save their snippets and access them whenever needed, streamlining their workflow and saving valuable time.
@@ -28,6 +30,9 @@ press ctrl+A, and then right-click to see the option open with the live server. 
 
 After downloading the folder on the local system, click on the index.html file and it will open up in the browser. 
 
-## Step 4: Build for Production
+## Step 4: Running on the Linux
 
-To build the app for production, use:
+Install the desired browser if haven't already installed, for installing the firefox type -> sudo snap install firefox
+
+For running an HTML file in firefox, go to the path containing the HTML file and then type -> firefox index.html
+
