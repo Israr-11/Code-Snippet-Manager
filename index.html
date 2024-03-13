@@ -1,94 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/701294dd35.js" crossorigin="anonymous"></script>
-  <title>Code Snippet Manager</title>
-  <style>
-    body{margin:0;font-family:Arial,sans-serif;background-color:#f4f4f4}
-    header{background-color:#333;color:#fff;padding:20px;text-align:center;display:flex;justify-content:space-between;align-items:center}
-    h1{margin:0}
-    #searchInput{padding:8px;border-radius:5px;margin-right:10px;border:none}
-    button{padding:8px 15px;background-color:#4caf50;color:#fff;border:none;border-radius:5px;cursor:pointer}
-    button:hover{background-color:#45a049}
-    main{padding:20px}
-    .snippet{background-color:#fff;border:1px solid #ccc;border-radius:5px;padding:10px;margin-bottom:10px;min-height:100px;position:relative}
-    .snippet h3{margin:0}
-    .snippet p{margin:5px 0 10px}
-    .code-container{overflow-x:auto}
-    .code{background-color:#f9f9f9;border:1px solid #ccc;padding:10px;border-radius:5px;display:block}
-    .copy-icon{position: absolute; top: 10px; right: 10px; cursor:pointer}
-    @media only screen and (max-width: 600px){header{flex-direction:column;align-items:stretch}#searchInput{margin:10px 0}}
-  </style>
-</head>
-<body>
-<header>
-  <h1>Code Snippet Manager</h1>
-  <div>
-    <input type="text" id="searchInput" placeholder="Search Snippets" />
-    <button onclick="addSnippet()">Add Snippet</button>
-  </div>
-</header>
-<main id="snippetList">
-  <!-- Snippets will be dynamically added here -->
-</main>
-<script>
-  let snippets = [];
-
-  function renderSnippets(snippetsToRender = snippets) {
-    const snippetList = document.getElementById("snippetList");
-    snippetList.innerHTML = "";
-    snippetsToRender.forEach((snippet, index) => {
-      const snippetItem = document.createElement("div");
-      snippetItem.classList.add("snippet");
-      snippetItem.innerHTML = `
-        <h3>${snippet.title}</h3>
-        <div class="code-container"><pre class="code"></pre></div>
-        <i class="fas fa-clipboard copy-icon" onclick="copyCode(${index})"></i>
-      `;
-      snippetItem.querySelector('.code').innerText = snippet.code; // Setting code using innerText
-      snippetList.appendChild(snippetItem);
-    });
-  }
-
-  function addSnippet() {
-    const title = prompt("Enter snippet title:");
-    if (!title) return;
-
-    const code = prompt("Enter snippet code:");
-    if (!code) return;
-
-    const snippet = { title, code };
-    snippets.push(snippet);
-    renderSnippets();
-  }
-
-  function copyCode(index) {
-    const codeToCopy = snippets[index].code;
-    navigator.clipboard.writeText(codeToCopy).then(() => {
-      alert("Code copied to clipboard!");
-    }).catch((error) => {
-      console.error("Failed to copy code: ", error);
-    });
-  }
-
-  function countLines(code) {
-    return code.split(/\r\n|\r|\n/).length;
-  }
-
-  document
-    .getElementById("searchInput")
-    .addEventListener("input", function () {
-      const query = this.value.toLowerCase();
-      const filteredSnippets = snippets.filter((snippet) => {
-        return (
-          snippet.title.toLowerCase().includes(query) ||
-          snippet.code.toLowerCase().includes(query)
-        );
-      });
-      renderSnippets(filteredSnippets);
-    });
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/701294dd35.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Code Snippet Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Code Snippet Manager</h1>
+      <div>
+        <input type="text" id="searchInput" placeholder="Search Snippets" />
+        <button onclick="addSnippet()">Add Snippet</button>
+      </div>
+    </header>
+    <main id="snippetList">
+      <!-- Snippets will be dynamically added here -->
+    </main>
+    <script src="script.js"></script>
+  </body>
 </html>
